@@ -1,0 +1,621 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Production</title>
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.3.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="./fav/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./fav/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./fav/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./fav/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./fav/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./fav/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./fav/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./fav/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./fav/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./fav/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./fav/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./fav/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/themify-icons.css">
+    <link rel="stylesheet" href="/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/css/cs-skin-elastic.css">
+    <!-- <link rel="stylesheet" href="/css/bootstrap-select.less"> -->
+    <link rel="stylesheet" href="/scss/style.css">
+    <link href="/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+    <style type="text/css">
+        .intLink { cursor: pointer; }
+        img.intLink { border: 0; }
+        #toolBar1 select { font-size:12px; }
+        #textBox {
+            background-color: darkgrey;
+          width: 100%;
+          height: 100%;
+          min-height: 200px;
+          padding: 12px;
+          overflow: scroll;
+        }
+        #textBox #sourceText {
+          padding: 0;
+          margin: 0;
+          min-width: 498px;
+          min-height: 500px;
+        }
+        #editMode label { cursor: pointer; }
+        
+        .rowSet {
+          background-color: rgb(234, 232, 232);
+          border: none;
+          /* color: black; */
+          padding: 16px 32px;
+          /* text-align: center; */
+          font-size: 16px;
+          /* margin: 4px 2px; */
+          transition: 0.3s;
+        }
+        
+        .rowSet:hover {
+          background-color: #3e8e41;
+          color: white;
+        }
+        </style>
+
+</head>
+<body>
+
+
+        <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                
+                <a style="color: yellow;" class="navbar-brand" href="./admin.html" id='user'></a>
+                <a class="navbar-brand hidden" href="./admin.html">...</a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <h3 class="menu-title" id="adminHeaderNav">Admin</h3>
+                    <li class="menu-item-has-children dropdown" id="adminNav">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Pages</a>
+                                <ul class="sub-menu children dropdown-menu">
+                                    <li><i class="fa fa-id-card-o"></i><a href="./admin.html">Home</a></li>
+                                    <li><i class="fa fa-puzzle-piece"></i><a href="./newProduction.html">Production</a></li>
+                                    <li><i class="fa fa-bars"></i><a href="adminSales.html">Admin Sales</a></li>
+                                    <li><i class="fa fa-spinner"></i><a href="sales.html">Sales</a></li>
+                                    <li onclick="newClientInput()"><i class="fa fa-share-square-o"></i><a>New Client</a></li>
+                                    
+                                    <!-- <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li> -->
+                                    <!-- <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li> -->
+                                    <!-- <li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li> -->
+                                    <!-- <li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li> -->
+                                    <!-- <li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li> -->
+                                    <li onclick="inputScript()"><i class="fa fa-file-word-o"></i><a>Scripts</a></li>
+                                </ul>
+                            </li>
+
+                    <h3 class="menu-title">Production</h3>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Info</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li onclick="productionHome()"><i class="fa fa-id-card-o"></i><a>Home</a></li>
+                            <li onclick="proInfo()"><i class="menu-icon fa fa-sign-in"></i><a>Active</a></li>
+                            <!-- <li onclick="customerInfo()"><i class="fa fa-th"></i><a>Customer Info</a></li> -->
+                            <li onclick="allFV()"><i class="menu-icon fa fa-book"></i><a>Finished</a></li>
+                            <li><i class="menu-icon fa fa-paper-plane"></i><a>Issues</a></li>
+                        </ul>
+                    </li>
+                    <h3 class="menu-title">Marketing</h3><!-- /.customer section -->
+                    
+                        <!-- <a  href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fas fa-ad"></i>Campaigns</a> -->
+                        <!-- <ul class="sub-menu children dropdown-menu" id="customerNav"> -->
+                            <li><i class="fa fa-id-badge"></i><a href="./campaigns.html">Campaigns</a></li>
+                        <!-- </ul> -->
+                    
+                </ul>
+                
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+            
+<!-- ======================================================== HEADER FOR USERS ===================================================== -->
+            <div class="header-menu">
+                    <div class="col-sm-7">
+                    <div class="dropdown for-message">
+                            <button onclick="messages()" class="btn btn-secondary dropdown-toggle"  aria-haspopup="true" aria-expanded="false">
+                              <i class="ti-email"></i>
+                           
+                            </button>
+                    </div>
+                    </div>
+
+         
+
+                <div class="col-sm-12">
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/raiLogo.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                                <a class="nav-link" href="/user.html" target="_blank"><i class="fa fa- user"></i>My Profile</a>
+
+                                <!--a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+
+                                <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a-->
+
+                                <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </header><!-- /header -->
+        <!-- Header-->
+
+        <div class="breadcrumbs" >
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1 id="busNameHolder">Dashboard</h1>
+                        <div id="task" style="display: block;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li class="active">Production</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div id="main">
+                        <!-- =================================           SUCCESS /\ FAIL MSG CONTENT      ========================== -->
+                        <div class="content mt-3" id="successMsg" style="display: none;">
+                                <div class="col-sm-12">
+                                        <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                                          <span class="badge badge-pill badge-error">Success</span> Everything looks good.
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content mt-3" id="errorMsg" style="display: none;">
+                                        <div class="col-sm-12">
+                                                <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                                                  <span class="badge badge-pill badge-danger">Error</span> Everything is fucked - you broke it.
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+        <!-- =================================           production HOME CONTENT SECTION      ====================================== -->
+
+        <div class="content mt-3" id="modification">
+
+            <!--div class="col-sm-12">
+                <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                  <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div-->
+
+
+
+
+            <div class="col-xl-3 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Free Videos Made</div>
+                                <div class="stat-digit" id="totalVideos"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-6">
+                <div class="card" onclick="proInfo()">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="ti-layout-grid2 text-warning border-warning"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Active Projects</div>
+                                <div class="stat-digit" id="activeProjects"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="stat-widget-one">
+                                <div class="stat-icon dib"><i class="ti-alert text-warning border-warning"></i></div>
+                                <div class="stat-content dib">
+                                    <div class="stat-text">Issues</div>
+                                    <div class="stat-digit">0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ===================================================================== MESSAGES SECTION =========================================================== -->
+                <div class="col-xl-3 col-lg-6">
+                        <div class="card" onclick="showProductionMessages()">
+                            <div class="card-body">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-comments-smiley border-primary"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Messages</div>
+                                        <div class="stat-digit" id="messageCount"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-12 col-lg-6" id="messageContent" style="display: none;">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-one">
+                                    <div class="stat-icon dib"><i class="ti-comments-smiley border-primary"></i></div>
+                                    <div class="stat-content dib">
+                                        <div class="stat-text">Messages</div>
+                                        <div class="stat-digit" id="productionMessageContent0"></div>
+                                        <div class="stat-digit" id="productionMessageContent1"></div>
+                                        <div class="stat-digit" id="productionMessageContent2"></div>
+                                        <div class="stat-digit" id="productionMessageContent3"></div>
+                                        <div class="stat-digit" id="productionMessageContent4"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+        </div> <!-- .content -->
+
+                <!-- =================================================   MESSAGING       ================================-->
+                <div class="content mt-3" id="messageCard" style="display: none;">
+                        <div class="animated fadeIn">
+            
+            
+            
+                                <div class="col-lg-12">
+                                  <div class="card">
+                                    <div class="card-header">
+                                        <div class="row form-group">
+                                                <div class="col col-md-3"><label for="contact-input" class=" form-control-label">Who is this note fucking for?</label></div>
+                                                            <div class="col-12 col-md-9">
+                                                                        <select id="messageRoute" name="status" class="form-control">
+                                                                            <option  value="marketing">Marketing</option>
+                                                                            <option value="sales">Sales</option>
+                                                                            <option  value="akira">Yo Momma</option>
+                                                                            
+                                                                        </select>
+                                                            </div>
+                                                </div>
+                                        <div class="row form-group">
+                                          <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Notes</label></div>
+                                          <div class="col-12 col-md-9"><textarea name="textarea-input" id="messageNoteContent" rows="9" placeholder="Content..." class="form-control"></textarea></div>
+                                        </div>
+                                      </form>
+                                    </div>
+                                    <div class="card-footer">
+                                      <button type="submit" class="btn btn-primary btn-sm" onclick="submitMsg();">
+                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                      </button>
+                                    </div>
+                                  </div>
+          
+                          </div><!-- .animated -->
+                      </div>
+                  </div>
+                </div>
+        <!-- =================================           CUSTOMER CONTENT CARD      ====================================== -->
+
+        <div class="col-lg-12" id="customerInfoCard" style="display: none;">
+            <div class="card">
+                    <div class="card-body">
+                            
+                            <div class="col-lg-6">
+                            <h1>Client Card:</h1><button onclick="urlSubmit()">Add Video</button><input id='urlInput'>
+                            <ul class="list-group">
+                            <li class="list-group-item" id="BusContain" style="display: none;" ></li>
+                            <li class="list-group-item" id="customerContentBusName" ><strong>Business Name: </strong></li>
+                            <li class="list-group-item" id="customerContentBusAdd" ><strong>Address: </strong></li>
+                            <li class="list-group-item" id="customerContentBusEmail" ><strong>Email: </strong></li>
+                            <li class="list-group-item" id="customerContentBusContact" ><strong>Contact: </strong> </li>
+                            <li class="list-group-item" id="customerContentBusPhone" ><strong>Phone: </strong> </li>
+                            <a class="list-group-item" id="customerContentBusWeb" ><strong>Website: </strong></a>
+                            <a class="list-group-item" id="customerContentBusVideoLink" ><strong>Video Url: </strong></a>
+                            <li class="list-group-item" id="timeInSales" ><strong>In Sales: </strong></li>
+                            <li class="list-group-item" ><textarea style="width: 100%; height: 100%;" id="noteText"></textarea>
+                                <button type="button" class="btn btn-success" onclick="addNoteButton()">Add Note</button>
+                                <!-- <button type="button" class="btn btn-warning" onclick="customerContentRefresh()">Refresh</button> -->
+                                <button type="button" class="btn btn-danger" onclick="cancelNote()">Cancel</button>
+                            </li>
+                            <!-- <li class="list-group-item" id="customerContentSalesStatus" ></li> -->
+                            </ul>
+                            <div >
+                                    <!-- <textarea style="height: 50px;" id="noteText"></textarea> -->
+                            </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                    <h1>Notes:</h1>
+                                    <div class="list-group"  id="customerContentBusNotes" style="height: 525px; overflow: auto;"></div>
+                            
+                                    
+                            </div>
+                        </div>
+            </div>
+    </div>
+
+
+
+
+        <!-- =================================           Production CONTENT SECTION      ====================================== -->
+    <div class="content mt-3" id="productionHTML" style="display: block;">
+            <div class="animated fadeIn">
+                    <div class="row">
+                            
+        
+                    <div class="col-md-12" id="cleanElements">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Production</strong>
+                            </div>
+                            <div class="card-body">
+                      <table id="production-data-table" class="table table-striped table-bordered"  >
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Production Status</th>
+                            <th>Script</th>
+                            <th>Voiceover</th>
+                            <th>Graphics</th>
+                            <th>Editing</th>
+                            <!-- <th>VideoURL</th> -->
+                            <!-- <th>Notes</th> -->
+                          </tr>
+                        </thead>
+                      </table>
+                      
+                            </div>
+                        </div>
+                    </div>
+        
+        
+                    </div>
+                </div><!-- .animated -->
+    </div>
+
+<!-- =================================================   MODAL FOR CHANGING STATUS       ================================-->
+
+    <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="smallmodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="smallmodalLabel">Production Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="inputMsg"></div>
+                    <select  class="selector" name="status" id='statusPro'  >
+                        <option value="Fresh">Fresh Meat</option>
+                        <option value="Working on Script">Working on Script</option>
+                        <option value="Script Done">Script Done</option>
+                        <option value="Working on Voice">Working on Voiceover</option>
+                        <option value="Voice Done">Voiceover Done</option>
+                        <option value="Working on Graphics">Working on Graphics</option>
+                        <option value="Graphics Done">Graphics Done</option>
+                        <option value="Working on Editing">Working on Editing</option>
+                        <option value="Editing Done">Editing Done</option>
+                        <option value="issues">Houston we have a Problem</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button onclick="changeProductionStatus()" type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================   Color Changing Modal       ================================-->
+
+    <div class="modal fade" id="colorCheck" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="smallmodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+                    <div id="busHold" style="display: none;"></div>
+                    <h5 class="modal-title" id="smallmodalLabel">Is this task finished???</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button id="nope" type="button" class="btn btn-danger" data-dismiss="modal">Nope</button>
+                    <button id="working" onclick="working()" type="button" class="btn btn-warning">Working on it!</button>
+                    <button id="done" onclick="done()" type="button" class="btn btn-success">Yup!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================   MODAL ADDING VIDEO URL        ================================-->
+
+    <div class="modal fade" id="urlModal" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="smallmodalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="urlCompanyTitle"></h5>
+                        <!-- <h5 class="modal-title" id="smallmodalLabel">Video URL</h5> -->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>Video URL</div>
+                        <input id="urlInfo">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button onclick="urlSubmit()" type="button" class="btn btn-primary">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- =================================================   MODAL ADDING EMAIL       ================================-->
+
+    <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="smallmodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="urlCompanyTitle"></h5>
+                    <!-- <h5 class="modal-title" id="smallmodalLabel">Video URL</h5> -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>Email</div>
+                    <input id="emailInfo">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button onclick="emailSubmit()" type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                    <!-- =================================           All Clients CONTENT SECTION      ====================================== -->   
+        
+
+                    <div class="content mt-3" id="allClient" style="display: none;">
+                        <div>
+                            <div>
+                                <div class="animated fadeIn">
+                                    <div class="row">
+                                        <div class="col-md-12" id="cleanElements" visibility="visible">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <strong class="card-title">All Clients Data Table</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                <table id="bootstrap-data-table" class="table table-striped table-bordered"  >
+                                                <thead>
+                                                            <tr>
+                                                                <th>Name</th>
+                                                                <th>Contact</th>
+                                                                <th>Phone</th>
+                                                                <th>Email</th>
+                                                                <th>H-Status</th>
+                                                                <th>S-Status</th>
+                                                            </tr>
+                                                </thead>
+                                                </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+    <!-- Right Panel -->
+
+    <script src="/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="/js/vendor/plugins.js"></script>
+    <script src="/js/lib/main.js"></script>
+    <!-- <script src="/js/admin/newAdmin.js"></script> -->
+    <script src="/js/admin/production.js"></script>
+    <script src="/js/admin/proFunctions.js"></script>
+    <!-- <script src="/js/admin/dashNumbers.js"></script> -->
+    <script src="/js/admin/messages.js"></script>
+ 
+
+
+    <script src="/js/lib/chart-js/Chart.bundle.js"></script>
+    <!-- <script src="/js/lib/dashboard.js"></script> -->
+    <!-- <script src="/js/lib/widgets.js"></script> -->
+    <!-- <script src="/js/lib/vector-map/jquery.vmap.js"></script> -->
+    <!-- <script src="/js/lib/vector-map/jquery.vmap.min.js"></script> -->
+    <script src="/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
+    <!-- <script src="/js/lib/vector-map/country/jquery.vmap.world.js"></script> -->
+
+</body>
+</html>

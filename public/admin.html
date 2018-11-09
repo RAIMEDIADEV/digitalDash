@@ -1,0 +1,898 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dash</title>
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.3.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="./fav/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./fav/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./fav/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./fav/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./fav/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./fav/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./fav/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./fav/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./fav/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./fav/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./fav/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./fav/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/themify-icons.css">
+    <link rel="stylesheet" href="/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/css/cs-skin-elastic.css">
+    <!-- <link rel="stylesheet" href="/css/bootstrap-select.less"> -->
+    <link rel="stylesheet" href="/scss/style.css">
+    <link href="/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+        .intLink { cursor: pointer; }
+        img.intLink { border: 0; }
+        #toolBar1 select { font-size:12px; }
+        #textBox {
+            background-color: darkgrey;
+          width: 100%;
+          height: 100%;
+          min-height: 200px;
+          padding: 12px;
+          overflow: scroll;
+        }
+        #textBox #sourceText {
+          padding: 0;
+          margin: 0;
+          min-width: 498px;
+          min-height: 500px;
+        }
+        #editMode label { cursor: pointer; }
+        
+        .rowSet {
+          background-color: rgb(234, 232, 232);
+          border: none;
+          /* color: black; */
+          padding: 16px 32px;
+          /* text-align: center; */
+          font-size: 16px;
+          /* margin: 4px 2px; */
+          transition: 0.3s;
+        }
+        
+        .rowSet:hover {
+          background-color: #3e8e41;
+          color: white;
+        }
+        </style>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+</head>
+<body>
+
+
+        <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                
+                <a class="navbar-brand" href="./admin.html" id='userInfo'></a>
+                <a class="navbar-brand hidden" href="./admin.html">...</a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <!--li class="active">
+                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li-->
+                    <h3 class="menu-title">Admin</h3><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Pages</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-id-card-o"></i><a href="./admin.html">Home</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="./newProduction.html">Production</a></li>
+                           
+                            <li><i class="fa fa-bars"></i><a href="adminSales.html">Admin Sales</a></li>
+                            <li><i class="fa fa-spinner"></i><a href="sales.html">Sales</a></li>
+                            <li><i class="fa fa-share-square-o"></i><a href="newClient.html">New Client</a></li>
+                            
+                            <!-- <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li> -->
+                            <!-- <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li> -->
+                            <!-- <li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li> -->
+                            <!-- <li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li> -->
+                            <!-- <li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li> -->
+                            <li onclick="inputScript()"><i class="fa fa-file-word-o"></i><a>Scripts</a></li>
+                            <li><i class="fa fa-fire"></i><a href="adminBackDoor.html">Backdoor</a></li>
+                        </ul>
+                    </li>
+                    <h3 class="menu-title">Customers</h3><!-- /.customer section -->
+                    <li class="menu-item-has-children dropdown">
+                        <a  href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-address-book"></i>Free Videos</a>
+                        <ul class="sub-menu children dropdown-menu" id="customerNav">
+                            <li onclick="getAllClients()"><i class="fa fa-id-badge"></i><a>All Clients</a></li>
+                        </ul>
+                    </li>
+                    <h3 class="menu-title">Marketing</h3><!-- /.customer section -->
+                    <li class="menu-item-has-children dropdown">
+                        
+                            <li><i ></i><a href="./campaigns.html">Campaigns</a></li>
+                        
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+
+            <div class="header-menu">
+
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                    <div class="header-left">
+                        <button id='icon' class="search-trigger" onclick="displaySearch()"><i class="fa fa-search"></i></button>
+                        <div >
+                            
+                                <div class="form-group"  style="margin-left: 20px; margin-top: 10px; display: none;" id="searchContainer">
+                                <div id='subCont'>
+                                <input style="width:200px;" id="searchInput" class="form-control" type="text" placeholder="999-999-9999" aria-label="Search">
+                                <button  style=" width:200px;" class="form-control" onclick="search()" class="btn btn-success" >Search</button>
+                                </div>
+                                <div id='subCont2' style="width:200px; display:none;">
+                                <button style="width:200px;" class="form-control" id="filler"></button>
+                                <button style="width:200px;" class="form-control" onclick="displaySearch()">Reset</button>
+                                </div>
+                                </div>
+                                
+                                
+
+                          
+                        </div>
+
+
+                        <!-- <div class="dropdown for-notification">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-bell"></i>
+                            <span class="count bg-danger">5</span>
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="notification">
+                            <p class="red">You have 3 Notification</p>
+                            <a class="dropdown-item media bg-flat-color-1" href="#">
+                                <i class="fa fa-check"></i>
+                                <p>Server #1 overloaded.</p>
+                            </a>
+                            <a class="dropdown-item media bg-flat-color-4" href="#">
+                                <i class="fa fa-info"></i>
+                                <p>Server #2 overloaded.</p>
+                            </a>
+                            <a class="dropdown-item media bg-flat-color-5" href="#">
+                                <i class="fa fa-warning"></i>
+                                <p>Server #3 overloaded.</p>
+                            </a>
+                          </div>
+                        </div> -->
+
+                        <div class="dropdown for-message">
+                          <!-- <button onclick="messages()" class="btn btn-secondary dropdown-toggle"  aria-haspopup="true" aria-expanded="false"> -->
+                            <!-- <i class="ti-email"></i> -->
+                            <!-- <span class="count bg-primary">9</span> -->
+                          <!-- </button> -->
+                          <!--div class="dropdown-menu" aria-labelledby="message">
+                            <p class="red">You have 4 Mails</p>
+                            <a class="dropdown-item media bg-flat-color-1" href="#">
+                                <span class="photo media-left"><img alt="avatar" src=""></span>
+                                <span class="message media-body">
+                                    <span class="name float-left">Jonathan Smith</span>
+                                    <span class="time float-right">Just now</span>
+                                        <p>Hello, this is an example msg</p>
+                                </span>
+                            </a>
+                            <a class="dropdown-item media bg-flat-color-4" href="#">
+                                <span class="photo media-left"><img alt="avatar" src=""></span>
+                                <span class="message media-body">
+                                    <span class="name float-left">Jack Sanders</span>
+                                    <span class="time float-right">5 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                </span>
+                            </a>
+                            <a class="dropdown-item media bg-flat-color-5" href="#">
+                                <span class="photo media-left"><img alt="avatar" src=""></span>
+                                <span class="message media-body">
+                                    <span class="name float-left">Cheryl Wheeler</span>
+                                    <span class="time float-right">10 minutes ago</span>
+                                        <p>Hello, this is an example msg</p>
+                                </span>
+                            </a>
+                            <a class="dropdown-item media bg-flat-color-3" href="#">
+                                <span class="photo media-left"><img alt="avatar" src=""></span>
+                                <span class="message media-body">
+                                    <span class="name float-left">Rachel Santos</span>
+                                    <span class="time float-right">15 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                </span>
+                            </a>
+                          </div-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/raiLogo.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                                <a class="nav-link" href="/user.html" target="_blank"><i class="fa fa- user"></i>My Profile</a>
+
+                                <!--a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+
+                                <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a-->
+
+                                <a class="nav-link" onclick="signOut()"><i class="fa fa-power -off"></i>Logout</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </header><!-- /header -->
+        <!-- Header-->
+
+        <div class="breadcrumbs" >
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1 id="pageId">Dashboard</h1>
+                        <h1 id="companyInfoHeader" style="display: none;"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li class="active">Dashboard</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+                        <!-- =================================================   SCRIPT WRITING SECTION       ================================-->
+
+                        <div class="content mt-3" id="inputScript" style="display: none;"><span onclick="closeOut()" style="float:right;">X</span>
+                                <div class="col-sm-12 col-lg-12">
+                                    
+                                            
+                                            <div id="toolBar1">
+                                            <select onchange="formatDoc('formatblock',this[this.selectedIndex].value);this.selectedIndex=0;">
+                                            <option selected>- formatting -</option>
+                                            <option value="h1">Title 1 &lt;h1&gt;</option>
+                                            <option value="h2">Title 2 &lt;h2&gt;</option>
+                                            <option value="h3">Title 3 &lt;h3&gt;</option>
+                                            <option value="h4">Title 4 &lt;h4&gt;</option>
+                                            <option value="h5">Title 5 &lt;h5&gt;</option>
+                                            <option value="h6">Subtitle &lt;h6&gt;</option>
+                                            <option value="p">Paragraph &lt;p&gt;</option>
+                                            <option value="pre">Preformatted &lt;pre&gt;</option>
+                                            </select>
+                                            <select onchange="formatDoc('fontname',this[this.selectedIndex].value);this.selectedIndex=0;">
+                                            <option class="heading" selected>- font -</option>
+                                            <option>Arial</option>
+                                            <option>Arial Black</option>
+                                            <option>Courier New</option>
+                                            <option>Times New Roman</option>
+                                            </select>
+                                            <select onchange="formatDoc('fontsize',this[this.selectedIndex].value);this.selectedIndex=0;">
+                                            <option class="heading" selected>- size -</option>
+                                            <option value="1">Very small</option>
+                                            <option value="2">A bit small</option>
+                                            <option value="3">Normal</option>
+                                            <option value="4">Medium-large</option>
+                                            <option value="5">Big</option>
+                                            <option value="6">Very big</option>
+                                            <option value="7">Maximum</option>
+                                            </select>
+                                            <select onchange="formatDoc('forecolor',this[this.selectedIndex].value);this.selectedIndex=0;">
+                                            <option class="heading" selected>- color -</option>
+                                            <option value="red">Red</option>
+                                            <option value="blue">Blue</option>
+                                            <option value="green">Green</option>
+                                            <option value="black">Black</option>
+                                            </select>
+                                            <select onchange="formatDoc('backcolor',this[this.selectedIndex].value);this.selectedIndex=0;">
+                                            <option class="heading" selected>- background -</option>
+                                            <option value="red">Red</option>
+                                            <option value="green">Green</option>
+                                            <option value="black">Black</option>
+                                            </select>
+                                            </div>
+                                            <div id="toolBar2">
+                                            <img class="intLink" title="Clean" onclick="if(validateMode()&&confirm('Are you sure?')){oDoc.innerHTML=sDefTxt};" src="data:image/gif;base64,R0lGODlhFgAWAIQbAD04KTRLYzFRjlldZl9vj1dusY14WYODhpWIbbSVFY6O7IOXw5qbms+wUbCztca0ccS4kdDQjdTLtMrL1O3YitHa7OPcsd/f4PfvrvDv8Pv5xv///////////////////yH5BAEKAB8ALAAAAAAWABYAAAV84CeOZGmeaKqubMteyzK547QoBcFWTm/jgsHq4rhMLoxFIehQQSAWR+Z4IAyaJ0kEgtFoLIzLwRE4oCQWrxoTOTAIhMCZ0tVgMBQKZHAYyFEWEV14eQ8IflhnEHmFDQkAiSkQCI2PDC4QBg+OAJc0ewadNCOgo6anqKkoIQA7" />
+                                            <img class="intLink" title="Print" onclick="printDoc();" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9oEBxcZFmGboiwAAAAIdEVYdENvbW1lbnQA9syWvwAAAuFJREFUOMvtlUtsjFEUx//n3nn0YdpBh1abRpt4LFqtqkc3jRKkNEIsiIRIBBEhJJpKlIVo4m1RRMKKjQiRMJRUqUdKPT71qpIpiRKPaqdF55tv5vvusZjQTjOlseUkd3Xu/3dPzusC/22wtu2wRn+jG5So/OCDh8ycMJDflehMlkJkVK7KUYN+ufzA/RttH76zaVocDptRxzQtNi3mRWuPc+6cKtlXZ/sddP2uu9uXlmYXZ6Qm8v4Tz8lhF1H+zDQXt7S8oLMXtbF4e8QaFHjj3kbP2MzkktHpiTjp9VH6iHiA+whtAsX5brpwueMGdONdf/2A4M7ukDs1JW662+XkqTkeUoqjKtOjm2h53YFL15pSJ04Zc94wdtibr26fXlC2mzRvBccEbz2kiRFD414tKMlEZbVGT33+qCoHgha81SWYsew0r1uzfNylmtpx80pngQQ91LwVk2JGvGnfvZG6YcYRAT16GFtW5kKKfo1EQLtfh5Q2etT0BIWF+aitq4fDbk+ImYo1OxvGF03waFJQvBCkvDffRyEtxQiFFYgAZTHS0zwAGD7fG5TNnYNTp8/FzvGwJOfmgG7GOx0SAKKgQgDMgKBI0NJGMEImpGDk5+WACEwEd0ywblhGUZ4Hw5OdUekRBLT7DTgdEgxACsIznx8zpmWh7k4rkpJcuHDxCul6MDsmmBXDlWCH2+XozSgBnzsNCEE4euYV4pwCpsWYPW0UHDYBKSWu1NYjENDReqtKjwn2+zvtTc1vMSTB/mvev/WEYSlASsLimcOhOBJxw+N3aP/SjefNL5GePZmpu4kG7OPr1+tOfPyUu3BecWYKcwQcDFmwFKAUo90fhKDInBCAmvqnyMgqUEagQwCoHBDc1rjv9pIlD8IbVkz6qYViIBQGTJPx4k0XpIgEZoRN1Da0cij4VfR0ta3WvBXH/rjdCufv6R2zPgPH/e4pxSBCpeatqPrjNiso203/5s/zA171Mv8+w1LOAAAAAElFTkSuQmCC">
+                                            <img class="intLink" title="Undo" onclick="formatDoc('undo');" src="data:image/gif;base64,R0lGODlhFgAWAOMKADljwliE33mOrpGjuYKl8aezxqPD+7/I19DV3NHa7P///////////////////////yH5BAEKAA8ALAAAAAAWABYAAARR8MlJq7046807TkaYeJJBnES4EeUJvIGapWYAC0CsocQ7SDlWJkAkCA6ToMYWIARGQF3mRQVIEjkkSVLIbSfEwhdRIH4fh/DZMICe3/C4nBQBADs=" />
+                                            <img class="intLink" title="Redo" onclick="formatDoc('redo');" src="data:image/gif;base64,R0lGODlhFgAWAMIHAB1ChDljwl9vj1iE34Kl8aPD+7/I1////yH5BAEKAAcALAAAAAAWABYAAANKeLrc/jDKSesyphi7SiEgsVXZEATDICqBVJjpqWZt9NaEDNbQK1wCQsxlYnxMAImhyDoFAElJasRRvAZVRqqQXUy7Cgx4TC6bswkAOw==" />
+                                            <img class="intLink" title="Remove formatting" onclick="formatDoc('removeFormat')" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAAd0SU1FB9oECQMCKPI8CIIAAAAIdEVYdENvbW1lbnQA9syWvwAAAuhJREFUOMtjYBgFxAB501ZWBvVaL2nHnlmk6mXCJbF69zU+Hz/9fB5O1lx+bg45qhl8/fYr5it3XrP/YWTUvvvk3VeqGXz70TvbJy8+Wv39+2/Hz19/mGwjZzuTYjALuoBv9jImaXHeyD3H7kU8fPj2ICML8z92dlbtMzdeiG3fco7J08foH1kurkm3E9iw54YvKwuTuom+LPt/BgbWf3//sf37/1/c02cCG1lB8f//f95DZx74MTMzshhoSm6szrQ/a6Ir/Z2RkfEjBxuLYFpDiDi6Af///2ckaHBp7+7wmavP5n76+P2ClrLIYl8H9W36auJCbCxM4szMTJac7Kza////R3H1w2cfWAgafPbqs5g7D95++/P1B4+ECK8tAwMDw/1H7159+/7r7ZcvPz4fOHbzEwMDwx8GBgaGnNatfHZx8zqrJ+4VJBh5CQEGOySEua/v3n7hXmqI8WUGBgYGL3vVG7fuPK3i5GD9/fja7ZsMDAzMG/Ze52mZeSj4yu1XEq/ff7W5dvfVAS1lsXc4Db7z8C3r8p7Qjf///2dnZGxlqJuyr3rPqQd/Hhyu7oSpYWScylDQsd3kzvnH738wMDzj5GBN1VIWW4c3KDon7VOvm7S3paB9u5qsU5/x5KUnlY+eexQbkLNsErK61+++VnAJcfkyMTIwffj0QwZbJDKjcETs1Y8evyd48toz8y/ffzv//vPP4veffxpX77z6l5JewHPu8MqTDAwMDLzyrjb/mZm0JcT5Lj+89+Ybm6zz95oMh7s4XbygN3Sluq4Mj5K8iKMgP4f0////fv77//8nLy+7MCcXmyYDAwODS9jM9tcvPypd35pne3ljdjvj26+H2dhYpuENikgfvQeXNmSl3tqepxXsqhXPyc666s+fv1fMdKR3TK72zpix8nTc7bdfhfkEeVbC9KhbK/9iYWHiErbu6MWbY/7//8/4//9/pgOnH6jGVazvFDRtq2VgiBIZrUTIBgCk+ivHvuEKwAAAAABJRU5ErkJggg==">
+                                            <img class="intLink" title="Bold" onclick="formatDoc('bold');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAInhI+pa+H9mJy0LhdgtrxzDG5WGFVk6aXqyk6Y9kXvKKNuLbb6zgMFADs=" />
+                                            <img class="intLink" title="Italic" onclick="formatDoc('italic');" src="data:image/gif;base64,R0lGODlhFgAWAKEDAAAAAF9vj5WIbf///yH5BAEAAAMALAAAAAAWABYAAAIjnI+py+0Po5x0gXvruEKHrF2BB1YiCWgbMFIYpsbyTNd2UwAAOw==" />
+                                            <img class="intLink" title="Underline" onclick="formatDoc('underline');" src="data:image/gif;base64,R0lGODlhFgAWAKECAAAAAF9vj////////yH5BAEAAAIALAAAAAAWABYAAAIrlI+py+0Po5zUgAsEzvEeL4Ea15EiJJ5PSqJmuwKBEKgxVuXWtun+DwxCCgA7" />
+                                            <img class="intLink" title="Left align" onclick="formatDoc('justifyleft');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAIghI+py+0Po5y02ouz3jL4D4JMGELkGYxo+qzl4nKyXAAAOw==" />
+                                            <img class="intLink" title="Center align" onclick="formatDoc('justifycenter');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAIfhI+py+0Po5y02ouz3jL4D4JOGI7kaZ5Bqn4sycVbAQA7" />
+                                            <img class="intLink" title="Right align" onclick="formatDoc('justifyright');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAIghI+py+0Po5y02ouz3jL4D4JQGDLkGYxouqzl43JyVgAAOw==" />
+                                            <img class="intLink" title="Numbered list" onclick="formatDoc('insertorderedlist');" src="data:image/gif;base64,R0lGODlhFgAWAMIGAAAAADljwliE35GjuaezxtHa7P///////yH5BAEAAAcALAAAAAAWABYAAAM2eLrc/jDKSespwjoRFvggCBUBoTFBeq6QIAysQnRHaEOzyaZ07Lu9lUBnC0UGQU1K52s6n5oEADs=" />
+                                            <img class="intLink" title="Dotted list" onclick="formatDoc('insertunorderedlist');" src="data:image/gif;base64,R0lGODlhFgAWAMIGAAAAAB1ChF9vj1iE33mOrqezxv///////yH5BAEAAAcALAAAAAAWABYAAAMyeLrc/jDKSesppNhGRlBAKIZRERBbqm6YtnbfMY7lud64UwiuKnigGQliQuWOyKQykgAAOw==" />
+                                            <img class="intLink" title="Quote" onclick="formatDoc('formatblock','blockquote');" src="data:image/gif;base64,R0lGODlhFgAWAIQXAC1NqjFRjkBgmT9nqUJnsk9xrFJ7u2R9qmKBt1iGzHmOrm6Sz4OXw3Odz4Cl2ZSnw6KxyqO306K63bG70bTB0rDI3bvI4P///////////////////////////////////yH5BAEKAB8ALAAAAAAWABYAAAVP4CeOZGmeaKqubEs2CekkErvEI1zZuOgYFlakECEZFi0GgTGKEBATFmJAVXweVOoKEQgABB9IQDCmrLpjETrQQlhHjINrTq/b7/i8fp8PAQA7" />
+                                            <img class="intLink" title="Delete indentation" onclick="formatDoc('outdent');" src="data:image/gif;base64,R0lGODlhFgAWAMIHAAAAADljwliE35GjuaezxtDV3NHa7P///yH5BAEAAAcALAAAAAAWABYAAAM2eLrc/jDKCQG9F2i7u8agQgyK1z2EIBil+TWqEMxhMczsYVJ3e4ahk+sFnAgtxSQDqWw6n5cEADs=" />
+                                            <img class="intLink" title="Add indentation" onclick="formatDoc('indent');" src="data:image/gif;base64,R0lGODlhFgAWAOMIAAAAADljwl9vj1iE35GjuaezxtDV3NHa7P///////////////////////////////yH5BAEAAAgALAAAAAAWABYAAAQ7EMlJq704650B/x8gemMpgugwHJNZXodKsO5oqUOgo5KhBwWESyMQsCRDHu9VOyk5TM9zSpFSr9gsJwIAOw==" />
+                                            <img class="intLink" title="Hyperlink" onclick="var sLnk=prompt('Write the URL here','http:\/\/');if(sLnk&&sLnk!=''&&sLnk!='http://'){formatDoc('createlink',sLnk)}" src="data:image/gif;base64,R0lGODlhFgAWAOMKAB1ChDRLY19vj3mOrpGjuaezxrCztb/I19Ha7Pv8/f///////////////////////yH5BAEKAA8ALAAAAAAWABYAAARY8MlJq7046827/2BYIQVhHg9pEgVGIklyDEUBy/RlE4FQF4dCj2AQXAiJQDCWQCAEBwIioEMQBgSAFhDAGghGi9XgHAhMNoSZgJkJei33UESv2+/4vD4TAQA7" />
+                                            <img class="intLink" title="Cut" onclick="formatDoc('cut');" src="data:image/gif;base64,R0lGODlhFgAWAIQSAB1ChBFNsRJTySJYwjljwkxwl19vj1dusYODhl6MnHmOrpqbmpGjuaezxrCztcDCxL/I18rL1P///////////////////////////////////////////////////////yH5BAEAAB8ALAAAAAAWABYAAAVu4CeOZGmeaKqubDs6TNnEbGNApNG0kbGMi5trwcA9GArXh+FAfBAw5UexUDAQESkRsfhJPwaH4YsEGAAJGisRGAQY7UCC9ZAXBB+74LGCRxIEHwAHdWooDgGJcwpxDisQBQRjIgkDCVlfmZqbmiEAOw==" />
+                                            <img class="intLink" title="Copy" onclick="formatDoc('copy');" src="data:image/gif;base64,R0lGODlhFgAWAIQcAB1ChBFNsTRLYyJYwjljwl9vj1iE31iGzF6MnHWX9HOdz5GjuYCl2YKl8ZOt4qezxqK63aK/9KPD+7DI3b/I17LM/MrL1MLY9NHa7OPs++bx/Pv8/f///////////////yH5BAEAAB8ALAAAAAAWABYAAAWG4CeOZGmeaKqubOum1SQ/kPVOW749BeVSus2CgrCxHptLBbOQxCSNCCaF1GUqwQbBd0JGJAyGJJiobE+LnCaDcXAaEoxhQACgNw0FQx9kP+wmaRgYFBQNeAoGihCAJQsCkJAKOhgXEw8BLQYciooHf5o7EA+kC40qBKkAAAGrpy+wsbKzIiEAOw==" />
+                                            <img class="intLink" title="Paste" onclick="formatDoc('paste');" src="data:image/gif;base64,R0lGODlhFgAWAIQUAD04KTRLY2tXQF9vj414WZWIbXmOrpqbmpGjudClFaezxsa0cb/I1+3YitHa7PrkIPHvbuPs+/fvrvv8/f///////////////////////////////////////////////yH5BAEAAB8ALAAAAAAWABYAAAWN4CeOZGmeaKqubGsusPvBSyFJjVDs6nJLB0khR4AkBCmfsCGBQAoCwjF5gwquVykSFbwZE+AwIBV0GhFog2EwIDchjwRiQo9E2Fx4XD5R+B0DDAEnBXBhBhN2DgwDAQFjJYVhCQYRfgoIDGiQJAWTCQMRiwwMfgicnVcAAAMOaK+bLAOrtLUyt7i5uiUhADs=" />
+                                            </div>
+                                            <div id="textBox" contenteditable="false"><p id="textBoxInput"></p></div>
+                                            <p id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);" /> <label for="switchBox">Show HTML</label></p>
+                                            <p>
+                                            <button onclick="scriptSave()" style="background-color: rgb(131, 221, 221);">Save</button>
+                                            <button onclick="editTrue()" style="background-color:lightgreen;">Edit</button>
+                                            <button onclick="editFalse()" style="background-color:rgb(238, 144, 121);">Exit</button>
+                                             
+                                            </p>
+                                            
+                                    </div>
+                                </div>
+
+        <div id="app" style="display: none;"></div>
+        <div id="video" style="display: none;"></div>
+
+        
+                <!-- =================================           SUCCESS /\ FAIL MSG CONTENT      ========================== -->
+                <div class="content mt-3" id="successMsg" style="display: none;">
+                    <div class="col-sm-12">
+                            <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                              <span class="badge badge-pill badge-error">Success</span> Everything looks good.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content mt-3" id="errorMsg" style="display: none;">
+                            <div class="col-sm-12">
+                                    <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                                      <span class="badge badge-pill badge-danger">Error</span> Error Time
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+        <!-- =================================================   MESSAGING       ================================-->
+        <div class="content mt-3" id="messageCard" style="display: none;">
+                <div class="animated fadeIn">
+    
+    
+    
+                        <div class="col-lg-12">
+                          <div class="card">
+                            <div class="card-header">
+                                <div class="row form-group">
+                                        <div class="col col-md-3"><label for="contact-input" class=" form-control-label">Who is this note for?</label></div>
+                                                    <div class="col-12 col-md-9">
+                                                                <select id="messageRoute" name="status" class="form-control">
+                                                                    <option  value="production">Production</option>
+                                                                    <option value="sales">Sales</option>
+                                                                    <option  value="akira">Marketing</option>
+                                                                    
+                                                                </select>
+                                                    </div>
+                                        </div>
+                                <div class="row form-group">
+                                  <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Notes</label></div>
+                                  <div class="col-12 col-md-9"><textarea name="textarea-input" id="messageNoteContent" rows="9" placeholder="Content..." class="form-control"></textarea></div>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="card-footer">
+                              <button type="submit" class="btn btn-primary btn-sm" onclick="submitMsg();">
+                                <i class="fa fa-dot-circle-o"></i> Submit
+                              </button>
+                            </div>
+                          </div>
+  
+                  </div><!-- .animated -->
+              </div>
+          </div>
+
+        
+
+
+
+        <div class="content mt-3" >
+
+
+
+             <!-- ===================================================================================== Modification 1 ===================================================== -->
+            <div id="modification" style="display: block;">
+                    
+                    <div class=" col-lg-12" id="toDoListContainer" > 
+                            <div class="card" style="background-color: black; color: rgb(202, 59, 59);"><a onclick="closeSection(modification)"  style="color: white; position: absolute; right: 5px;" >X</a>
+                                <div class="card-body">
+                                    <div class="stat-widget-one">
+                                            <div class="col-xl-1 col-lg-1">
+                                        <div class="stat-icon dib"><i class="ti-bolt text-danger border-danger"></i></div>
+                                        </div>
+                                        <div class=" row">
+                                            <div class="stat-digit col-xl-2 col-lg-2" id="toDoHeader" style="background-color: black; color: rgb(202, 59, 59);">To Do List</div>
+
+                                            <table id="toDoList" class="table table-striped table-bordered">
+                                            <thead style="background-color: black; ">
+                                                <tr style="background-color: black; ">
+                                                    <th style="background-color: black; ">Name</th>
+                                                    <th>P-Status</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            
+                                            </table>
+                                        </div>
+                                        <div class=" row">
+                                                <div class="stat-digit col-xl-2 col-lg-2" id="toDoHeader"></div>
+                                                <!-- <div class="stat-text col-xl-6 col-lg-6" id="toDoList"></div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            <div class="col-sm-6 col-lg-3" >
+                <div class="card text-white bg-flat-color-3">
+                    <div class="card-body pb-0">
+                        <div class="dropdown float-right">
+                            <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                                <i class="fa fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-menu-content">
+                                    <a class="dropdown-item" href="#">June</a>
+                                    <a class="dropdown-item" href="#">July</a>
+                                    <a class="dropdown-item" href="#">August</a>
+                                    <a class="dropdown-item" href="#">October</a>
+                                    <a class="dropdown-item" href="#">November</a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mb-0">
+                            <span class="count">?</span>
+                        </h4>
+                        <p class="text-light">Website Traffic</p>
+
+                    </div>
+
+                        <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                            <canvas id="widgetChart3"></canvas>
+                        </div>
+                </div>
+            </div>
+         
+     
+<!-- ===================================================== FACEBOOK CARD =================================================================== -->
+            <div class="col-lg-3 col-md-6">
+                <div class="social-box facebook">
+                    <i class="fa fa-facebook"></i>
+                    <ul>
+                        <li>
+                            <strong><span class="count">714</span> </strong>
+                            <span>followers</span>
+                        </li>
+                        <li>
+                            <strong><span class="count">0</span></strong>
+                            <span>feeds</span>
+                        </li>
+                    </ul>
+                </div>
+                <!--/social-box-->
+            </div><!--/.col-->
+
+<!-- ===================================================== TWITTER CARD =================================================================== -->
+            <div class="col-lg-3 col-md-6">
+                <div class="social-box twitter">
+                    <i class="fa fa-twitter"></i>
+                    <ul>
+                        <li>
+                            <strong><span class="count">30</span> </strong>
+                            <span>followers</span>
+                        </li>
+                        <li>
+                            <strong><span class="count">22</span></strong>
+                            <span>tweets</span>
+                        </li>
+                    </ul>
+                </div>
+                <!--/social-box-->
+            </div><!--/.col-->
+
+
+
+
+<!-- ===================================================== IG CARD =================================================================== -->
+            <div class="col-lg-3 col-md-6">
+                <div class="social-box google-plus">
+                    <i class="fa fa-instagram"></i>
+                    <ul>
+                        <li>
+                            <strong><span class="count">459</span> </strong>
+                            <span>followers</span>
+                        </li>
+                        <li>
+                            <strong><span class="count">138</span></strong>
+                            <span>following</span>
+                        </li>
+                    </ul>
+                </div>
+                <!--/social-box-->
+            </div><!--/.col-->
+
+
+
+<!-- ===================================================== PROFIT CARD =================================================================== -->
+            <div class="col-xl-3 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Total Profit</div>
+                                <div class="stat-digit"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!-- ===================================================== FREE VIDEO CARD =================================================================== -->
+            <div class="col-xl-3 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Free Videos Made</div>
+                                <div class="stat-digit" id="totalVideos"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- ===================================================== ACTIVE PROJECTS CARD =================================================================== -->
+            <div class="col-xl-3 col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="ti-layout-grid2 text-warning border-warning"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Active Projects</div>
+                                <div class="stat-digit" id="activeProjects"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <!-- ======================================================== MARKETING MESSAGES =============================-->
+
+            <div class="col-xl-3 col-lg-6">
+                <div class="card" onclick="showMarketingMessages()">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="ti-comments-smiley border-primary"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Messages</div>
+                                <div class="stat-digit" id="messageCount"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xl-12 col-lg-6" id="messageContent" style="display: none;">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="ti-comments-smiley border-primary"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Messages</div>
+                                <div class="stat-digit" id="marketingMessageContent0"></div>
+                                <div class="stat-digit" id="marketingMessageContent1"></div>
+                                <div class="stat-digit" id="marketingMessageContent2"></div>
+                                <div class="stat-digit" id="marketingMessageContent3"></div>
+                                <div class="stat-digit" id="marketingMessageContent4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class=" col-lg-12" id="payingClients" > 
+            <div class="card" style="background-color: rgb(107, 202, 135); color: rgb(202, 59, 154);"><a onclick="closeSection(modification)"  style="color: white; position: absolute; right: 5px;" >X</a>
+                <div class="card-body">
+                    <div class="stat-widget-one">
+                            <div class="col-xl-1 col-lg-1">
+                        <!-- <div class="stat-icon dib"><i class="ti-bolt text-danger border-danger"></i></div> -->
+                        </div>
+                        <div class=" row">
+                            <div class="stat-digit col-xl-2 col-lg-2" id="payingClientsHeader" style="background-color: rgb(107, 202, 135); color: rgb(202, 59, 154);">Paying Clients</div>
+
+                            <table id="payingCLientList" class="table table-striped table-bordered">
+                            <thead style="background-color: rgb(107, 202, 135); ">
+                                <tr style="background-color: rgb(107, 202, 135); ">
+                                    <th style="background-color: rgb(107, 202, 135); ">Name</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Purchase Item</th>
+                                </tr>
+                            </thead>
+                            
+                            </table>
+                        </div>
+                        <div class=" row">
+                                <div class="stat-digit col-xl-2 col-lg-2" id="toDoHeader"></div>
+                                <!-- <div class="stat-text col-xl-6 col-lg-6" id="toDoList"></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        </div> <!-- .content -->
+
+
+
+
+            <!-- =================================           All Clients CONTENT SECTION      ====================================== -->   
+        
+
+                        <div class="content mt-3" id="modification2" style="display: none;">
+                            <div>
+                                <div>
+                                    <div class="animated fadeIn">
+                                        <div class="row">
+                                            <div class="col-md-12" id="cleanElements" visibility="visible">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <strong class="card-title">Data Table</strong>
+                                                    </div>
+                                                    <div class="card-body">
+                                                    <table id="bootstrap-data-table" class="table table-striped table-bordered"  >
+                                                    <thead>
+                                                                <tr>
+                                                                    <th>Name</th>
+                                                                    <th>Contact</th>
+                                                                    <th>Phone</th>
+                                                                    <th>Email</th>
+                                                                    <th>Status</th>
+                                                                    <!-- <th>VideoURL</th>
+                                                                    <th>Notes</th> -->
+                                                                </tr>
+                                                    </thead>
+                                                    </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+    </div>
+
+
+
+<!-- =================================================   MODAL FOR CHANGING P__STATUS       ================================-->
+
+    <div class="modal fade" id="smallmodalpStatusChange" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="smallmodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="smallmodalLabel">Production Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="inputpMsg"></div>
+                    <select  class="selector" name="status" id='pStatus-input'  >
+                        <option value="Fresh">Fresh Meat</option>
+                        <option value="Working on Script">Working on Script</option>
+                        <option value="Script Done">Script Done</option>
+                        <option value="Working on Voice">Working on Voiceover</option>
+                        <option value="Voice Done">Voiceover Done</option>
+                        <option value="Working on Graphics">Working on Graphics</option>
+                        <option value="Graphics Done">Graphics Done</option>
+                        <option value="Working on Editing">Working on Editing</option>
+                        <option value="Done">Done</option>
+                        <option value="issues">Houston we have a Problem</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button onclick="change_p_Status()" type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- =================================================   MODAL FOR CHANGING STATUS       ================================-->
+
+<div class="modal fade" id="smallmodalStatusChange" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="smallmodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="smallmodalLabel">Company Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="inputMsg"></div>
+                    <select  class="selector" name="status" id='statusInput'  >
+                        <option value="Nothing">Nothing</option>
+                        <option value="Production">Production</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Cleaned">Cleaned</option>
+                        <option value="Need to Email">Need to Email</option>
+                        <option value="Emailed">Emailed</option>
+                        <option value="Emailed and Opened">Emailed and Opened</option>
+                        <option value="Sent to Sales">Sent to Sales</option>
+                        <option value="EO + Called">EO + Called</option>
+                        <option value="EO + Called">Paying</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button onclick="changeStatus()" type="button" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- =================================================   MODAL FOR CHANGING SALES STATUS       ================================-->
+
+<div class="modal fade" id="smallmodalSalesStatusChange" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="smallmodalLabel">Company Status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="inputMsg2"></div>
+                <select  class="selector" name="status" id='salesStatusInput'  >
+                    <option value="Nothing">Nothing</option>
+                    <option value="New">New</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button onclick="changeSalesStatus()" type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =================================================   MODAL FOR LEAD GEN       ================================-->
+
+<div class="modal fade" id="smallmodalLeadGen" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="smallmodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h5 id="urlCompanyTitle"></h5>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="message"></div>
+                            <div id="message-error"></div>
+                            <div>Lead Genisis Name</div>
+                            <input id="leadGenInfo">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button onclick="leadGenSubmit()" type="button" class="btn btn-primary">Submit</button>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+<!-- =================================================   CHANGIN URL FOR VIMEO      ================================-->
+
+    <div class="modal fade" id="urlModal" tabindex="-1" role="dialog" style="display: none;" aria-labelledby="smallmodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="urlCompanyTitle"></h5>
+                    <!-- <h5 class="modal-title" id="smallmodalLabel">Video URL</h5> -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    
+    
+    </div>
+
+    <script src="/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="/js/vendor/plugins.js"></script>
+    <script src="/js/lib/main.js"></script>
+    <script src="/js/admin/newAdmin.js?n=1"></script>
+    <script src="/js/customers/search.js"></script>
+    <script src="/js/admin/inputScript.js?n=1"></script>
+    <script src="/js/admin/navCustomers.js?n=1"></script>
+    <script src="/js/customers/note.js?n=1"></script>
+    <script src="/js/customers/customerCardAdmin.js?n=1"></script>
+    <script src="/js/lib/chart-js/Chart.bundle.js"></script>
+    <script src="/js/lib/widgets.js"></script>
+
+</body>
+</html>

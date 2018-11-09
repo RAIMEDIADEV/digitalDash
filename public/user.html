@@ -1,0 +1,290 @@
+﻿<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->  
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User Profile</title>
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.3.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="./fav/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./fav/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./fav/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./fav/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./fav/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./fav/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./fav/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./fav/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./fav/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./fav/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./fav/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./fav/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/themify-icons.css">
+    <link rel="stylesheet" href="/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/css/cs-skin-elastic.css">
+    <!-- <link rel="stylesheet" href="/css/bootstrap-select.less"> -->
+    <link rel="stylesheet" href="/scss/style.css">
+    <link href="/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+        .intLink { cursor: pointer; }
+        img.intLink { border: 0; }
+        #toolBar1 select { font-size:12px; }
+        #textBox {
+            background-color: darkgrey;
+          width: 100%;
+          height: 100%;
+          min-height: 200px;
+          padding: 12px;
+          overflow: scroll;
+        }
+        #textBox #sourceText {
+          padding: 0;
+          margin: 0;
+          min-width: 498px;
+          min-height: 500px;
+        }
+        #editMode label { cursor: pointer; }
+
+        .salesView{
+            color:white;
+        }
+
+        .selector:hover {
+            color: rgb(101, 238, 226);
+        }
+        
+        .rowSet {
+          background-color: rgb(234, 232, 232);
+          border: none;
+          /* color: black; */
+          padding: 16px 32px;
+          /* text-align: center; */
+          font-size: 16px;
+          /* margin: 4px 2px; */
+          transition: 0.3s;
+        }
+        
+        .rowSet:hover {
+          background-color: #3e8e41;
+          color: white;
+        }
+        </style>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+</head>
+<body>
+
+
+        <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header" id="leftHeader">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                
+                <a class="navbar-brand" href="./sales.html" id="userInfo"></a>
+                <a class="navbar-brand hidden" href="./sales.html">...</a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse" style="display: none;">
+                <ul class="nav navbar-nav">
+                    <!--li class="active">
+                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li-->
+                    <h3 class="menu-title" style="display: none;">Admin</h3><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown" style="display: none;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Pages</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-id-card-o"></i><a href="./admin.html">Home</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="./newProduction.html">Production</a></li>
+                            <li onclick="getAllClients()"><i class="fa fa-id-badge"></i><a>All Clients</a></li>
+                            <li><i class="fa fa-bars"></i><a href="adminSales.html">Admin Sales</a></li>
+                            <li><i class="fa fa-spinner"></i><a href="sales.html">Sales</a></li>
+                            <li onclick="newClientInput()"><i class="fa fa-share-square-o"></i><a>New Client</a></li>
+                            <li onclick="inputScript()"><i class="fa fa-file-word-o"></i><a>Scripts</a></li>
+                        </ul>
+                    </li>
+
+                    
+                </ul>
+            </div><!-- /.navbar-collapse -->
+            <div id="store"></div>
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!--================================================================================== Header =======================================================-->
+        <header id="header" class="header">
+
+            <div class="header-menu">
+
+                <div class="col-sm-7">
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                    <div class="header-left">
+                        <!-- <button class="search-trigger" onsubmit="search()"><i class="fa fa-search"></i></button> -->
+                        <div class="form-inline">
+                            <!-- <form class="search-form"> -->
+                                <input id="searchInput" class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button onclick="search()" class="search" type="submit">Look</button>
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            <!-- </form> -->
+                        </div>
+
+                        <div class="row" id="salesRepSelect" style="float: right; display: none;">
+                                <div class="col-auto my-1">                  
+                                        <select class="custom-select mr-sm-2" id="salesRep"></select>
+                          
+                                </div>
+                                <button onclick="changeSalesRep();" value="Get Values" type="button" class="btn btn-success">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/raiLogo.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                                <a class="nav-link" href="/user.html" target="_blank"><i class="fa fa- user"></i>My Profile</a>
+                                <a class="nav-link" onclick="signOut()"><i class="fa fa-power -off"></i>Logout</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </header><!-- /header -->
+        <!-- Header-->
+
+        <div class="breadcrumbs" >
+            
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1 id="busNameHolder">User Profile</h1>
+                        <h1 id="companyInfoHeader"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li class="active"></li>
+                            
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+<!-- =================================           MAIN SECTION      ====================================== -->
+        <div class="content mt-3" id="main" >
+            <div id="dashNumbers" class="animated fadeIn">
+
+
+<!-- =================================           Content Section      ====================================== -->                 
+
+                             
+                            
+                            <div class="col-lg-12">
+                                    <div class="card">
+                                            <div class="card-body">
+                                                    
+                                                    <div class="col-lg-6">
+                                                        <h1>Leads:</h1>
+                                                        <div id="info">
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                    <h1>User Profile:</h1>
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item" id="BusContain" style="display: none;" ></li>
+                                                            <li class="list-group-item" id="userName" ><strong>User Name: </strong></li>
+                                                       
+                                                            <li class="list-group-item" id="userEmail" ><strong>Email: </strong></li>
+                                                            <li class="list-group-item" id="userPhone" ><strong>Phone: </strong> </li>
+                                                 
+                                                 
+                                                            <li class="list-group-item" ><textarea style="width: 100%; height: 100%;" id="noteText"></textarea>
+                                                                <button type="button" class="btn btn-success" onclick="changeUser()">Change</button>
+                                                                <button type="button" class="btn btn-danger" onclick="cancelNote()">Cancel</button>
+                                                            </li>
+                                                          
+                                                            </ul>
+                                                            <div >
+                                                       
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                    </div>
+                            </div>
+            
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+
+
+    <script src="/js/vendor/jquery-2.1.4.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="/js/vendor/plugins.js"></script>
+    <script src="/js/lib/main.js"></script>
+
+    <script src="/js/admin/user.js?n=1"></script>
+
+
+
+    <script src="/js/lib/chart-js/Chart.bundle.js"></script>
+
+
+</body>
+</html>

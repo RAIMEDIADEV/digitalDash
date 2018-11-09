@@ -1,0 +1,24 @@
+{
+    "hosting": {
+      "public": "public",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [{
+        "source" : "**/*.@(png|js|css|woff2)",
+        "headers" : [{
+          "key" : "Cache-Control",
+          "value" : "max-age=31536000"
+        }]
+      },
+      {
+        "source" : "workbox-sw.js",
+        "headers" : [{
+          "key" : "Cache-Control",
+          "value" : "max-age=0"
+        }]
+      }]
+    }
+  }

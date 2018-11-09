@@ -1,0 +1,324 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Backdoor</title>
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/5.3.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/5.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.3.1/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="./fav/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./fav/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./fav/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./fav/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./fav/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./fav/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./fav/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./fav/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./fav/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./fav/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./fav/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./fav/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/themify-icons.css">
+    <link rel="stylesheet" href="/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/css/cs-skin-elastic.css">
+    <!-- <link rel="stylesheet" href="/css/bootstrap-select.less"> -->
+    <link rel="stylesheet" href="/scss/style.css">
+    <link href="/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+        .intLink { cursor: pointer; }
+        img.intLink { border: 0; }
+        #toolBar1 select { font-size:12px; }
+        #textBox {
+            background-color: darkgrey;
+          width: 100%;
+          height: 100%;
+          min-height: 200px;
+          padding: 12px;
+          overflow: scroll;
+        }
+        #textBox #sourceText {
+          padding: 0;
+          margin: 0;
+          min-width: 498px;
+          min-height: 500px;
+        }
+        #editMode label { cursor: pointer; }
+        
+        .rowSet {
+          background-color: rgb(234, 232, 232);
+          border: none;
+          /* color: black; */
+          padding: 16px 32px;
+          /* text-align: center; */
+          font-size: 16px;
+          /* margin: 4px 2px; */
+          transition: 0.3s;
+        }
+        
+        .rowSet:hover {
+          background-color: #3e8e41;
+          color: white;
+        }
+
+        .status{
+            background-color: #66bbb7;
+        }
+        .radio{
+            background-color: #b97852;
+        }
+        .time{
+            background-color: #7bb952;
+        }
+        .trackChange{
+            background-color: #ad52b9;
+        }
+        .busBasic{
+            background-color: #b7b952;
+        }
+        </style>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
+</head>
+<body>
+
+
+        <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                
+                <a class="navbar-brand" href="./admin.html" id='userInfo'></a>
+                <a class="navbar-brand hidden" href="./admin.html">...</a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <h3 class="menu-title">Admin</h3><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Pages</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-id-card-o"></i><a href="./admin.html">Home</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="./newProduction.html">Production</a></li>
+                            <li><i class="fa fa-bars"></i><a href="adminSales.html">Admin Sales</a></li>
+                            <li><i class="fa fa-spinner"></i><a href="sales.html">Sales</a></li>
+                            <li onclick="newClientInput()"><i class="fa fa-share-square-o"></i><a>New Client</a></li>
+                            <li onclick="inputScript()"><i class="fa fa-file-word-o"></i><a>Scripts</a></li>
+                        </ul>
+                    </li>
+                    <h3 class="menu-title">Customers</h3><!-- /.customer section -->
+                    <li class="menu-item-has-children dropdown">
+                        <a  href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-address-book"></i>Free Videos</a>
+                        <ul class="sub-menu children dropdown-menu" id="customerNav">
+                            <li onclick="getAllClients()"><i class="fa fa-id-badge"></i><a>All Clients</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+        </nav>
+    </aside><!-- /#left-panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+
+            <div class="header-menu">
+
+                <div class="col-sm-7">
+                        <div class="page-title">
+                            <div class="row">
+                                <h1>Backdoor<span id="clickValid"></span></h1>
+                                <div class="col-lg-5" style="margin-left: 20%;">
+                                        
+                                        <select id="clientSelect" name="status" class="form-control"></select>
+                                        <button style="width: 110px; margin-left: 30%;" type="button" class="btn btn-outline-success" onclick="findClientInfo()">Just send it</button> 
+                                        <div id="busNameHolder" style="display: none;"></div>
+                                      
+                                </div>
+                                <h1 id="successMsg" style="display: none;">Good job dork</h1>
+                                </div>
+                            </div>
+
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/raiLogo.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                                <a class="nav-link" href="/user.html" target="_blank"><i class="fa fa- user"></i>My Profile</a>
+
+                                <!--a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+
+                                <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a-->
+
+                                <a class="nav-link" onclick="signOut()"><i class="fa fa-power -off"></i>Logout</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </header>
+
+        <!-- =================================           Left side content      ====================================== -->
+
+<div class="row">
+                            <!-- <div class="col-lg-2">
+                                
+                                <button style="width: 140px; margin-top: 5px;" type="button" class="btn btn-outline-primary" onclick="changeClientInfo(SalesStatus, radioOrderDateYear, radioOrderDateMonth, radioOrderDateDay, RadioOrderNumber)">Just change it</button>
+                                <button style="width: 140px; margin-top: 5px;" type="button" class="btn btn-outline-primary" onclick="timeRun()">Run Time</button>
+                            </div> -->
+
+    
+    </div>
+    <div class="row">
+            <div class="col-lg-12" id="customerInfoCard" >
+                    <div class="card" id="customerInfoCardChild">
+                            <div class="card-body">
+                                    
+                                    <div class="col-lg-6" style="height: 700px; overflow: auto;">
+                                    <h1>Client Card:</h1>
+                                    <ul class="list-group" id="clientCardContainer" style="display: none;">
+                                    <li class="list-group-item" id="BusContain" style="display: none;" ></li>
+                                    <li class="list-group-item busBasic" id="customerContentBusName" ></li>
+                                    <li class="list-group-item busBasic" id="customerContentBusAdd" ></li>
+                                    <li class="list-group-item busBasic" id="customerContentBusEmail" ></li>
+                                    <li class="list-group-item busBasic" id="customerContentBusContact" > </li>
+                                    <li class="list-group-item busBasic" id="customerContentBusPhone" ></li>
+                                    <li class="list-group-item busBasic" ><a id="customerContentBusWeb"></a></li>
+                                    <li class="list-group-item busBasic" ><a id="customerContentBusVideoLink"></a> </li>
+                                    <li class="list-group-item" >
+                                        <div class="modal-body">
+                                            <div>Video URL</div>
+                                            <input id="urlInfo">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button onclick="urlSubmit()" type="button" class="btn btn-primary">Confirm</button>
+                                        </div>
+                                    </li>
+                                    <!-- =========================Status================================ -->
+                                    <li class="list-group-item status" id="customerContentStatus" onclick="change(this.id)" data-toggle="modal" data-target="#changeModal"></li>
+                                    <li class="list-group-item status" id="customerContentpStatus" onclick="change(this.id)" data-toggle="modal" data-target="#changeModal"></li>
+                                    <li class="list-group-item status" id="SalesStatus" onclick="change(this.id)" data-toggle="modal" data-target="#changeModal"></li>
+                                    <li class="list-group-item status" id="contactStatus" onclick="change(this.id)" data-toggle="modal" data-target="#changeModal"></li>
+                                    <li class="list-group-item status" id="dateEmailed" onclick="change(this.id)" data-toggle="modal" data-target="#changeModal"></li>
+                                    <!-- =========================Radio================================ -->
+                                    <li class="list-group-item radio" id="radioOrderNumber" onclick="change(this.id)" data-toggle="modal" data-target="#changeModal"></li>
+                                    <li class="list-group-item radio" id="radioDate"></li>
+                                    <li class="list-group-item radio" id="radioAmount" onclick="change(this.id)" data-toggle="modal" data-target="#changeModal"></li>
+                                    <li class="list-group-item radio" id="leadGen"></li>
+                                    <!-- =========================Time================================ -->
+                                    <li class="list-group-item time" id="timeInHouse"></li>
+                                    <li class="list-group-item time" id="timeInProduction"></li>
+                                    <li class="list-group-item time" id="timeInSales"></li>
+
+                                    <!-- =========================Track Changes================================ -->
+                                    <li class="list-group-item trackChange" id="salesStatusChanges"></li>
+                                    <li class="list-group-item trackChange" id="houseStatusChanges"></li>
+                                    <li class="list-group-item trackChange" id="contactStatusChanges"></li>
+                                    <!-- <li class="list-group-item" id="leadGen"></li> -->
+
+                                    
+                                    <li class="list-group-item" id="customerContentpDateTimeCreated"></li>
+                                    
+
+                                    <li class="list-group-item" ><textarea style="width: 100%; height: 100%;" id="noteText"></textarea>
+                                        <button type="button" class="btn btn-success" id="submitNote" onclick="addNoteButton()">Add Note</button>
+                                        <!-- <button type="button" class="btn btn-warning" onclick="customerContentRefresh()">Refresh</button> -->
+                                        <button type="button" class="btn btn-danger" onclick="cancelNote()">Cancel</button>
+                                    </li>
+                                    <!-- <li class="list-group-item" id="customerContentSalesStatus" ></li> -->
+                                    </ul>
+                                    <div >
+                                            
+                                    </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                            <h1>Notes:</h1>    
+                                            
+                                            <div class="list-group"  id="customerContentBusNotes" style="height: 750px; overflow: auto;"></div>
+                                            
+                                            
+                                    </div>
+                                </div>
+                    </div>
+            </div>
+
+
+
+
+
+    </div>
+
+                               
+    </div>
+
+
+    <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button id="modalButton" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    <!-- Right Panel -->
+
+    <script src="/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="/js/vendor/plugins.js"></script>
+    <script src="/js/lib/main.js"></script>
+    <script src="/js/admin/backdoor.js"></script>
+
+
+</body>
+</html>
